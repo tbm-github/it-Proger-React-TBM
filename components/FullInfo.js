@@ -9,9 +9,8 @@ export default function Contacts({ route }) {
   return (
     <View style={gStyle.main}>
       <Image
+        style={styles.image}
         source={{
-          width: "100%",
-          height: 200,
           uri: route.params.img,
         }}
       />
@@ -22,6 +21,10 @@ export default function Contacts({ route }) {
 }
 
 const styles = StyleSheet.create({
+  image: {
+    width: "100%",
+    height: 200,
+  },
   full: {
     fontFamily: "mt-light",
     fontSize: 16,

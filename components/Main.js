@@ -47,9 +47,8 @@ export default function Main({ navigation }) {
             onPress={() => navigation.navigate("FullInfo", item)}
           >
             <Image
+              style={styles.image}
               source={{
-                width: "100%",
-                height: 200,
                 uri: item.img,
               }}
             />
@@ -63,6 +62,10 @@ export default function Main({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  image: {
+    width: "100%",
+    height: 200,
+  },
   header: {
     marginBottom: 30,
   },
