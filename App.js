@@ -6,7 +6,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.box, { backgroundColor: "yellow" }]}>
+      <View style={styles.box}>
         <Button title={"-"} onPress={() => setCount(count - 1)} />
       </View>
 
@@ -16,7 +16,7 @@ export default function App() {
         </Text>
       </View>
 
-      <View style={[styles.box, { backgroundColor: "yellow" }]}>
+      <View style={styles.box}>
         <Button title={"+"} onPress={() => setCount(count + 1)} />
       </View>
     </View>
