@@ -26,7 +26,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "gray",
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-around",
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   text: {
     color: "black",
     textAlign: "center",
-    fontSize: 18,
-    textAlignVertical: "center",
+    fontSize: 30,
   },
 });
