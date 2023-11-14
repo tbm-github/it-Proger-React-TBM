@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../../components/ReduxTools";
 
 export default function Counter() {
-  const [count, setCount] = useState(0);
+  //const [count, setCount] = useState(0);
+  const counter = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+  console.log(counter);
 
   return (
     <View style={styles.container}>
       <View style={styles.box}>
-        <Button title={"-"} onPress={() => setCount(count - 1)} />
+        <Button title={"-"} onPress={() => dispatch(decrement())} />
       </View>
 
       <View style={[styles.box, { backgroundColor: "white" }]}>
         <Text numberOfLines={1} style={styles.text}>
-          {count}
+          {counter}
         </Text>
       </View>
 
       <View style={styles.box}>
-        <Button title={"+"} onPress={() => setCount(count + 1)} />
+        <Button title={"+"} onPress={() => dispatch(increment())} />
       </View>
     </View>
   );

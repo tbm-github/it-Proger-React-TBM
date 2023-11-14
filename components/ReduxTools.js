@@ -18,6 +18,6 @@ const counterSlice = createSlice({
 const { increment, decrement } = counterSlice.actions;
 
 const store = configureStore({
-  reducer: counterSlice.reducer,
+  reducer: { counter: counterSlice.reducer },
 });
 export { increment, decrement, store };
