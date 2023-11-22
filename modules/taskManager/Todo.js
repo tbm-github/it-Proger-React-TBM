@@ -2,7 +2,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 
 export const Todo = (props) => {
   return (
-    <View>
+    <View style={styles.main}>
       <Text style={styles.text}>{props.todo.title}</Text>
       <Button title="X" onPress={() => props.onRemove(props.todo.id)} />
     </View>
@@ -11,9 +11,12 @@ export const Todo = (props) => {
 
 const styles = StyleSheet.create({
   main: {
-    paddingTop: 60,
-    paddingLeft: 10,
-    height: 100,
+    padding: 20,
+    borderWidth: 1,
+    marginTop: 20,
+    width: "80%",
+    textAlign: "center",
+    marginLeft: "10%",
   },
   text: {
     fontSize: 18,

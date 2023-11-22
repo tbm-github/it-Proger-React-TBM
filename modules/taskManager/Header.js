@@ -19,5 +19,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "black",
     textAlign: "left",
+
+    borderBottomWidth: 1,
+    borderColor: "#000",
   },
 });

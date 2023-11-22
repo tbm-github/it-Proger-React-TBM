@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Text, View } from "react-native";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
+import { Form } from "./Form";
+import { StatusBar } from "expo-status-bar";
 
 const TaskManager = () => {
   const [todos, setTodos] = useState([
@@ -10,10 +12,20 @@ const TaskManager = () => {
     { title: "Task 3", status: "delete", id: "2" },
   ]);
 
-  const onAdd = () => {};
+  const onAdd = (text) => {
+    setTodos((list) => {
+      return [
+        ...list,
+        {
+          title: text,
+          status: "notCompleted",
+          id: Math.random().toString(36).substring(7),
+        },
+      ];
+    });
+  };
 
   const onRemove = (id) => {
-    console.log("remove");
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
   };
@@ -24,6 +36,8 @@ const TaskManager = () => {
       {todos.map((todo) => (
         <Todo key={todo.id} todo={todo} onRemove={onRemove} />
       ))}
+      <Form onAdd={onAdd} />
+      <StatusBar style="auto" />
     </View>
   );
 };
