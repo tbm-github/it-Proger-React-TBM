@@ -25,6 +25,19 @@ const TaskManager = () => {
     });
   };
 
+  const onCheckbox = (id, isChecked) => {
+    console.log(id, " ", isChecked);
+
+    setTodos((list) =>
+      list.map((el) => {
+        return el.id === id
+          ? { ...el, status: isChecked ? "notCompleted" : "completed" }
+          : el;
+      })
+    );
+    console.log(todos);
+  };
+
   const onRemove = (id) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
@@ -34,10 +47,14 @@ const TaskManager = () => {
     <View>
       <Header />
       {todos.map((todo) => (
-        <Todo key={todo.id} todo={todo} onRemove={onRemove} />
+        <Todo
+          key={todo.id}
+          todo={todo}
+          onCheckbox={onCheckbox}
+          onRemove={onRemove}
+        />
       ))}
       <Form onAdd={onAdd} />
-      <StatusBar style="auto" />
     </View>
   );
 };
