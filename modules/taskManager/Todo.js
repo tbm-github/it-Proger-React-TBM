@@ -10,7 +10,8 @@ export const Todo = (props) => {
   else {
     if (props.filter === "all" && props.todo.delete === "false") flag = "true";
     else {
-      if (props.filter === props.todo.status) flag = "true";
+      if (props.filter === props.todo.status && props.todo.delete === "false")
+        flag = "true";
     }
   }
 
