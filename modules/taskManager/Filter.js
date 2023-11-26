@@ -8,6 +8,7 @@ export const Filter = (props) => {
   return (
     <View style={styles.container}>
       <SelectList
+        defaultOption={{ key: "all", value: "all" }}
         setSelected={setSelected}
         data={props.data}
         onSelect={() => {

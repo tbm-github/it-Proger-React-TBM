@@ -26,6 +26,7 @@ const TaskManager = () => {
       case "all":
         const allShowTodos = todos.filter((todo) => todo.delete === "false");
         setShowTodos(allShowTodos);
+        console.log("all");
         break;
       case "completed":
         const compShowTodos = todos.filter(
@@ -45,13 +46,10 @@ const TaskManager = () => {
         const delShowTodos = todos.filter((todo) => todo.delete !== "false");
         setShowTodos(delShowTodos);
     }
-    console.log(filter);
-    console.log(todos);
-    console.log(showTodos);
   };
 
   const [todos, setTodos] = useState([
-    { title: "Task 1", status: "completed", delete: "false", id: "0" },
+    { title: "Task 1", status: "notCompleted", delete: "false", id: "0" },
     { title: "Task 2", status: "notCompleted", delete: "false", id: "1" },
     { title: "Task 3", status: "notCompleted", delete: "false", id: "2" },
   ]);
@@ -68,7 +66,6 @@ const TaskManager = () => {
         },
       ];
     });
-    console.log(todos);
   };
 
   const onCheckbox = (id, isChecked) => {
@@ -82,8 +79,13 @@ const TaskManager = () => {
   };
 
   const onRemove = (id) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedTodos);
+    // const updatedTodos = todos.filter((todo) => todo.id !== id);
+    // setTodos(updatedTodos);
+    setTodos((todos) =>
+      todos.map((el) => {
+        return el.id === id ? { ...el, delete: "true" } : el;
+      })
+    );
   };
 
   return (
