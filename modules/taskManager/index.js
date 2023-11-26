@@ -7,6 +7,7 @@ import { Form } from "./Form";
 import { StatusBar } from "expo-status-bar";
 
 const TaskManager = () => {
+  // Data for Select
   const data = [
     { key: "all", value: "all" },
     { key: "completed", value: "completed" },
@@ -14,38 +15,10 @@ const TaskManager = () => {
     { key: "delete", value: "delete" },
   ];
 
-  const [showTodos, setShowTodos] = useState([
-    { title: "Task ", status: "completed", delete: "false", id: "0" },
-  ]);
-
   const [filter, setFilter] = useState("all");
 
   const onSelect = (filter) => {
     setFilter(filter);
-    switch (filter) {
-      case "all":
-        const allShowTodos = todos.filter((todo) => todo.delete === "false");
-        setShowTodos(allShowTodos);
-        console.log("all");
-        break;
-      case "completed":
-        const compShowTodos = todos.filter(
-          (todo) => todo.status === "completed"
-        );
-        setShowTodos(compShowTodos);
-        console.log("comp");
-        break;
-      case "notCompleted":
-        const notcompShowTodos = todos.filter(
-          (todo) => todo.status === "notCompleted"
-        );
-        setShowTodos(notcompShowTodos);
-        console.log("notComp");
-        break;
-      case "delete":
-        const delShowTodos = todos.filter((todo) => todo.delete !== "false");
-        setShowTodos(delShowTodos);
-    }
   };
 
   const [todos, setTodos] = useState([
@@ -53,20 +26,6 @@ const TaskManager = () => {
     { title: "Task 2", status: "notCompleted", delete: "false", id: "1" },
     { title: "Task 3", status: "notCompleted", delete: "false", id: "2" },
   ]);
-
-  const onAdd = (text) => {
-    setTodos((list) => {
-      return [
-        ...list,
-        {
-          title: text,
-          status: "notCompleted",
-          delete: "false",
-          id: Math.random().toString(36).substring(7),
-        },
-      ];
-    });
-  };
 
   const onCheckbox = (id, isChecked) => {
     setTodos((list) =>
@@ -86,6 +45,20 @@ const TaskManager = () => {
         return el.id === id ? { ...el, delete: "true" } : el;
       })
     );
+  };
+
+  const onAdd = (text) => {
+    setTodos((list) => {
+      return [
+        ...list,
+        {
+          title: text,
+          status: "notCompleted",
+          delete: "false",
+          id: Math.random().toString(36).substring(7),
+        },
+      ];
+    });
   };
 
   return (

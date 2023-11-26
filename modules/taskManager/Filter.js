@@ -13,7 +13,6 @@ export const Filter = (props) => {
         data={props.data}
         onSelect={() => {
           props.onSelect(selected);
-          console.log(selected);
         }}
       />
     </View>
