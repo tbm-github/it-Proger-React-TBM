@@ -4,7 +4,6 @@ import { Filter } from "./Filter";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
-import { StatusBar } from "expo-status-bar";
 
 const TaskManager = () => {
   // Data for Select
@@ -15,7 +14,7 @@ const TaskManager = () => {
     { key: "delete", value: "delete" },
   ];
 
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("");
 
   const onSelect = (filter) => {
     setFilter(filter);
@@ -65,15 +64,21 @@ const TaskManager = () => {
     <View>
       <Header />
       <Filter data={data} onSelect={onSelect} />
-      {todos.map((todo) => (
-        <Todo
-          key={todo.id}
-          todo={todo}
-          filter={filter}
-          onCheckbox={onCheckbox}
-          onRemove={onRemove}
-        />
-      ))}
+      {todos
+        .filter(
+          (todo) =>
+            (filter === "delete" && todo.delete === "true") ||
+            (todo.delete === "false" &&
+              (filter === "all" || filter === todo.status))
+        )
+        .map((todo) => (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            onCheckbox={onCheckbox}
+            onRemove={onRemove}
+          />
+        ))}
       <Form onAdd={onAdd} />
     </View>
   );
