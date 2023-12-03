@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { Filter } from "./Filter";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
+import { DropDown } from "./DropDown";
 
 const TaskManager = () => {
   // Data for Select
@@ -18,12 +19,13 @@ const TaskManager = () => {
 
   const onSelect = (filter) => {
     setFilter(filter);
+    console.log(filter);
   };
 
   const [todos, setTodos] = useState([
-    { title: "Task 1", status: "notCompleted", delete: "false", id: "0" },
-    { title: "Task 2", status: "notCompleted", delete: "false", id: "1" },
-    { title: "Task 3", status: "notCompleted", delete: "false", id: "2" },
+    { title: "Task 1", status: "notCompleted", deleted: false, id: "0" },
+    { title: "Task 2", status: "notCompleted", deleted: false, id: "1" },
+    { title: "Task 3", status: "notCompleted", deleted: false, id: "2" },
   ]);
 
   const onCheckbox = (id, isChecked) => {
@@ -41,7 +43,7 @@ const TaskManager = () => {
     // setTodos(updatedTodos);
     setTodos((todos) =>
       todos.map((el) => {
-        return el.id === id ? { ...el, delete: "true" } : el;
+        return el.id === id ? { ...el, deleted: !el.deleted } : el;
       })
     );
   };
@@ -53,7 +55,7 @@ const TaskManager = () => {
         {
           title: text,
           status: "notCompleted",
-          delete: "false",
+          deleted: false,
           id: Math.random().toString(36).substring(7),
         },
       ];
@@ -63,22 +65,24 @@ const TaskManager = () => {
   return (
     <View>
       <Header />
+
       <Filter data={data} onSelect={onSelect} />
-      {todos
-        .filter(
-          (todo) =>
-            (filter === "delete" && todo.delete === "true") ||
-            (todo.delete === "false" &&
-              (filter === "all" || filter === todo.status))
-        )
-        .map((todo) => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            onCheckbox={onCheckbox}
-            onRemove={onRemove}
-          />
-        ))}
+      <ScrollView style={{ height: "60%" }}>
+        {todos
+          .filter(
+            (todo) =>
+              (filter === "delete" && todo.deleted) ||
+              (!todo.deleted && (filter === "all" || filter === todo.status))
+          )
+          .map((todo) => (
+            <Todo
+              key={todo.id}
+              todo={todo}
+              onCheckbox={onCheckbox}
+              onRemove={onRemove}
+            />
+          ))}
+      </ScrollView>
       <Form onAdd={onAdd} />
     </View>
   );

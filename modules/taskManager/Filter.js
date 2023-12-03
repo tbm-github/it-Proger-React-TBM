@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { SelectList } from "react-native-dropdown-select-list";
+import { DropDown } from "./DropDown";
 
 export const Filter = (props) => {
-  const [selected, setSelected] = useState("");
+  //  const [selected, setSelected] = useState("");
+
+  const [selectValue, setSelectValue] = useState("");
+
+  const selected = (item) => {
+    setSelectValue(item);
+    props.onSelect(item.key);
+  };
 
   return (
     <View style={styles.container}>
-      <SelectList
-        defaultOption={{ key: "all", value: "all" }}
-        setSelected={setSelected}
+      <DropDown
+        selectValue={selectValue}
         data={props.data}
-        onSelect={() => {
-          props.onSelect(selected);
-        }}
-      />
+        oneSelect={selected}
+      ></DropDown>
     </View>
   );
 };

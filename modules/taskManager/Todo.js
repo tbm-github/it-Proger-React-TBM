@@ -19,8 +19,7 @@ export const Todo = (props) => {
       fontSize: 18,
       color: "black",
       textAlign: "left",
-      textDecorationLine:
-        props.todo.delete === "true" ? "line-through" : "none",
+      textDecorationLine: props.todo.deleted ? "line-through" : "none",
     },
   });
 
@@ -35,7 +34,7 @@ export const Todo = (props) => {
       <Text style={styles.text}>{props.todo.title}</Text>
       <Button
         style={styles.text}
-        title="X"
+        title={props.todo.deleted ? "R" : "X"}
         onPress={() => props.onRemove(props.todo.id)}
       />
     </View>
