@@ -4,7 +4,6 @@ import { Filter } from "./Filter";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
-import { DropDown } from "./DropDown";
 
 const TaskManager = () => {
   // Data for Select
@@ -19,7 +18,6 @@ const TaskManager = () => {
 
   const onSelect = (filter) => {
     setFilter(filter);
-    console.log(filter);
   };
 
   const [todos, setTodos] = useState([
