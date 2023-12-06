@@ -15,7 +15,6 @@ export const Filter = (props) => {
   return (
     <View style={styles.container}>
       <DropDown
-        key={props.data.key}
         selectValue={selectValue}
         data={props.data}
         oneSelect={selected}

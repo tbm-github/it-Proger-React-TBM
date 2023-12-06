@@ -22,7 +22,7 @@ export const DropDown = ({ data, selectValue, oneSelect }) => {
   };
 
   return (
-    <View style={{}}>
+    <View style={styles.dropdownContainer}>
       <TouchableOpacity style={styles.dropDownStyle} onPress={selectOption}>
         <Text>{!!selectValue ? selectValue.value : "Choose Option"}</Text>
         <Image
@@ -35,24 +35,24 @@ export const DropDown = ({ data, selectValue, oneSelect }) => {
 
       {option && (
         <View style={styles.openDropDown}>
-          <Modal visible={option} transparent animationType="none">
-            <View style={styles.openModal}>
-              {data.map((val, i) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() => oneSelectItem(val)}
-                    style={{
-                      ...styles.optionName,
-                      backgroundColor:
-                        val.key === selectValue.key ? "pink" : "white",
-                    }}
-                  >
-                    <Text>{val.value}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </Modal>
+          {/* <Modal visible={option} transparent animationType="none"> */}
+          {/* <View style={styles.openModal}> */}
+          {data.map((val, i) => {
+            return (
+              <TouchableOpacity
+                onPress={() => oneSelectItem(val)}
+                style={{
+                  ...styles.optionName,
+                  backgroundColor:
+                    val.key === selectValue.key ? "pink" : "white",
+                }}
+              >
+                <Text>{val.value}</Text>
+              </TouchableOpacity>
+            );
+          })}
+          {/* </View> */}
+          {/* </Modal> */}
         </View>
       )}
     </View>
@@ -60,6 +60,9 @@ export const DropDown = ({ data, selectValue, oneSelect }) => {
 };
 
 const styles = StyleSheet.create({
+  dropdownContainer: {
+    // position: "relative",
+  },
   dropDownStyle: {
     // backgroundColor: "#eab676",
     minHeight: 40,
@@ -72,9 +75,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   openDropDown: {
-    // backgroundColor: "red",
+    backgroundColor: "red",
+    // position: "absolute",
+    marginTop: 50,
     padding: 10,
     marginVertical: 5,
+    zIndex: 1,
   },
   optionName: {
     margin: 5,
