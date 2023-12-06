@@ -12,7 +12,7 @@ const taskManagerSlice = createSlice({
   reducers: {
     onCheckbox: (state, action) => {
       console.log("action onCheckbox : ", action);
-      state.map((el) => {
+      return state.map((el) => {
         return el.id === action.payload.id
           ? {
               ...el,
@@ -32,7 +32,7 @@ const taskManagerSlice = createSlice({
       return [
         ...state,
         {
-          title: action.payload.title,
+          title: action.payload,
           status: "notCompleted",
           deleted: false,
           id: Math.random().toString(36).substring(7),

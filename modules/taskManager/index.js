@@ -79,13 +79,15 @@ const TaskManager = () => {
             <Todo
               key={todo.id}
               todo={todo}
-              onCheckbox={() => dispatch(onCheckbox(321))}
+              onCheckbox={(id, isChecked) =>
+                dispatch(onCheckbox({ id: id, isChecked: isChecked }))
+              }
               // onCheckbox={onCheckbox}
               onRemove={() => dispatch(onRemove(todo.id))}
             />
           ))}
       </ScrollView>
-      <Form onAdd={() => dispatch(onAdd())} />
+      <Form onAdd={(text) => dispatch(onAdd(text))} />
     </View>
   );
 };
