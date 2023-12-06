@@ -30,11 +30,12 @@ export default function Counter() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     backgroundColor: "gray",
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-around",
+    marginTop: 80,
   },
   box: {
     backgroundColor: "yellow",

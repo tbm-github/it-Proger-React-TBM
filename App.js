@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Counter from "./modules/counter";
 import { store } from "./modules/store/index";
 import { Provider } from "react-redux";
+import Counter from "./modules/counter";
 import TaskManager from "./modules/taskManager";
 
 export default function App() {
   return (
     <Provider store={store}>
-      {/* <Counter /> */}
+      <Counter />
       <TaskManager />
     </Provider>
   );

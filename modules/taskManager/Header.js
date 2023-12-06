@@ -11,13 +11,12 @@ export const Header = () => {
 
 const styles = StyleSheet.create({
   main: {
-    paddingTop: 60,
+    paddingTop: 30,
     paddingLeft: 10,
     borderBottomWidth: 1,
     borderColor: "#000",
     width: "80%",
     marginLeft: "10%",
-    marginBottom: 20,
   },
   text: {
     fontSize: 18,
