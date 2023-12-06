@@ -27,7 +27,7 @@ const TaskManager = () => {
   return (
     <View>
       <Header />
-      <Filter data={data} onSelect={onSelect} />
+      <Filter key={data.key} data={data} onSelect={onSelect} />
       <ScrollView style={{ height: "50%" }}>
         {todos
           .filter(

@@ -40,6 +40,7 @@ export const DropDown = ({ data, selectValue, oneSelect }) => {
           {data.map((val, i) => {
             return (
               <TouchableOpacity
+                key={val.key}
                 onPress={() => oneSelectItem(val)}
                 style={{
                   ...styles.optionName,
@@ -77,7 +78,6 @@ const styles = StyleSheet.create({
   openDropDown: {
     backgroundColor: "red",
     // position: "absolute",
-    marginTop: 50,
     padding: 10,
     marginVertical: 5,
     zIndex: 1,

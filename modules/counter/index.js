@@ -7,7 +7,6 @@ export default function Counter() {
   //const [count, setCount] = useState(0);
   const counter = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
-  console.log(counter);
 
   return (
     <View style={styles.container}>
