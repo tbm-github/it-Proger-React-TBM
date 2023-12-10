@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = [
   { title: "Task 1", status: "notCompleted", deleted: false, id: "0" },
@@ -25,7 +26,7 @@ const taskManagerSlice = createSlice({
         return el.id === action.payload ? { ...el, deleted: !el.deleted } : el;
       });
     },
-    onAdd: (state, action) => {
+    onAdd: (state, action: PayloadAction<string>) => {
       return [
         ...state,
         {

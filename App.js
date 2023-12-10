@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { store } from "./modules/store/index";
 import { Provider } from "react-redux";
 import Counter from "./modules/counter";

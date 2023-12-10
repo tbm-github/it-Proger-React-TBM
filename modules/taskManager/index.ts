@@ -6,9 +6,10 @@ import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
 import { onAdd, onCheckbox, onRemove } from "../store/todoReducer";
+import type { RootState } from "../store"; 
 
 const TaskManager = () => {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
   // Data for Select
   const data = [
@@ -20,7 +21,7 @@ const TaskManager = () => {
 
   const [filter, setFilter] = useState("");
 
-  const onSelect = (filter) => {
+  const onSelect = (filter:string) => {
     setFilter(filter);
   };
 
