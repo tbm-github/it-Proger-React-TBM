@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
 
-export const Form = (props) => {
+type Props = {
+  onAdd: (text: string) => void;
+};
+export const Form = (props: Props) => {
   const [text, setValue] = useState("");
 
-  const onChange = (text) => {
+  const onChange = (text: string) => {
     setValue(text);
   };
   return (
@@ -14,11 +17,7 @@ export const Form = (props) => {
         onChangeText={onChange}
         placeholder="New Task"
       ></TextInput>
-      <Button
-        style={styles.btn}
-        title="Add"
-        onPress={() => props.onAdd(text)}
-      />
+      <Button title="Add" onPress={() => props.onAdd(text)} />
     </View>
   );
 };
@@ -43,10 +42,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   btn: {
-    fontSize: 18,
-    color: "black",
-    borderRadius: 3,
-    backgroundColor: "red",
-    borderWidth: 1,
+    // fontSize: 18,
+    //   color: "black",
+    //   borderRadius: 3,
+    //   backgroundColor: "red",
+    //   borderWidth: 1,
   },
 });

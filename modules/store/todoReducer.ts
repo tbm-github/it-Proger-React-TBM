@@ -11,7 +11,7 @@ const taskManagerSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    onCheckbox: (state, action) => {
+    onCheckbox: (state, action: PayloadAction<{id:string,isChecked: boolean}>) => {
       return state.map((el) => {
         return el.id === action.payload.id
           ? {
@@ -21,7 +21,7 @@ const taskManagerSlice = createSlice({
           : el;
       });
     },
-    onRemove: (todos, action) => {
+    onRemove: (todos, action: PayloadAction<string>) => {
       return todos.map((el) => {
         return el.id === action.payload ? { ...el, deleted: !el.deleted } : el;
       });

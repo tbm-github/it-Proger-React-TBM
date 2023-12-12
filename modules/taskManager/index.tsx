@@ -6,7 +6,7 @@ import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
 import { onAdd, onCheckbox, onRemove } from "../store/todoReducer";
-import type { RootState } from "../store"; 
+import type { RootState } from "../store";
 
 const TaskManager = () => {
   const todos = useSelector((state: RootState) => state.todos);
@@ -21,14 +21,14 @@ const TaskManager = () => {
 
   const [filter, setFilter] = useState("");
 
-  const onSelect = (filter:string) => {
+  const onSelect = (filter: string) => {
     setFilter(filter);
   };
 
   return (
     <View>
       <Header />
-      <Filter key={data.key} data={data} onSelect={onSelect} />
+      <Filter data={data} onSelect={onSelect} />
       <ScrollView style={{ height: "50%" }}>
         {todos
           .filter(
@@ -40,7 +40,7 @@ const TaskManager = () => {
             <Todo
               key={todo.id}
               todo={todo}
-              onCheckbox={(id, isChecked) =>
+              onCheckbox={(id: string, isChecked: boolean) =>
                 dispatch(onCheckbox({ id: id, isChecked: isChecked }))
               }
               // onCheckbox={onCheckbox}

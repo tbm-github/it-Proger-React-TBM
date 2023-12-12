@@ -33,7 +33,6 @@ export const Todo = (props) => {
       />
       <Text style={styles.text}>{props.todo.title}</Text>
       <Button
-        style={styles.text}
         title={props.todo.deleted ? "R" : "X"}
         onPress={() => props.onRemove(props.todo.id)}
       />
