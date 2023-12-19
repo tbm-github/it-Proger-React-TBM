@@ -41,11 +41,5 @@ const styles = StyleSheet.create({
     width: "80%",
     borderWidth: 1,
   },
-  btn: {
-    // fontSize: 18,
-    //   color: "black",
-    //   borderRadius: 3,
-    //   backgroundColor: "red",
-    //   borderWidth: 1,
-  },
+  btn: {},
 });

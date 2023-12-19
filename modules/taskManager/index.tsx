@@ -16,7 +16,6 @@ type Data = {
 const TaskManager = () => {
   const todos = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
-  // Data for Select
   const data: Data[] = [
     { key: "all", value: "all" },
     { key: "completed", value: "completed" },
@@ -48,7 +47,6 @@ const TaskManager = () => {
               onCheckbox={(id: string, isChecked: boolean) =>
                 dispatch(onCheckbox({ id: id, isChecked: isChecked }))
               }
-              // onCheckbox={onCheckbox}
               onRemove={() => dispatch(onRemove(todo.id))}
             />
           ))}

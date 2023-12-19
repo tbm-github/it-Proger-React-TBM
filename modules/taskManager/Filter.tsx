@@ -12,8 +12,6 @@ type Props = {
 };
 
 export const Filter = (props: Props) => {
-  //  const [selected, setSelected] = useState("");
-
   const [selectValue, setSelectValue] = useState({ key: "", value: "" });
 
   const selected = (item: Data) => {

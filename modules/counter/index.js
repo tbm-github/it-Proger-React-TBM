@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../../components/ReduxTools";
 
 export default function Counter() {
-  //const [count, setCount] = useState(0);
   const counter = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
 
@@ -29,7 +28,6 @@ export default function Counter() {
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
     backgroundColor: "gray",
     alignItems: "center",
     flexDirection: "row",

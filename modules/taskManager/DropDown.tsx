@@ -53,8 +53,6 @@ export const DropDown = ({ data, selectValue, oneSelect }: Props) => {
               </TouchableOpacity>
             );
           })}
-          {/* </View> */}
-          {/* </Modal> */}
         </View>
       )}
     </View>
@@ -62,11 +60,8 @@ export const DropDown = ({ data, selectValue, oneSelect }: Props) => {
 };
 
 const styles = StyleSheet.create({
-  dropdownContainer: {
-    // position: "relative",
-  },
+  dropdownContainer: {},
   dropDownStyle: {
-    // backgroundColor: "#eab676",
     minHeight: 40,
     borderRadius: 10,
     flexDirection: "row",
@@ -78,7 +73,6 @@ const styles = StyleSheet.create({
   },
   openDropDown: {
     backgroundColor: "red",
-    // position: "absolute",
     padding: 10,
     marginVertical: 5,
     zIndex: 1,
