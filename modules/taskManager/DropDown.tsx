@@ -1,30 +1,33 @@
-import {
-  Image,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Images } from "./Images";
 
-export const DropDown = ({ data, selectValue, oneSelect }) => {
+type Data = {
+  key: string;
+  value: string;
+};
+type Props = {
+  data: Data[];
+  selectValue: Data;
+  oneSelect: (val: Data) => void;
+};
+export const DropDown = ({ data, selectValue, oneSelect }: Props) => {
   const [option, setOption] = React.useState(false);
 
   const selectOption = () => {
     setOption(!option);
   };
 
-  const oneSelectItem = (val) => {
+  const oneSelectItem = (val: Data) => {
     setOption(false);
     oneSelect(val);
   };
-
   return (
     <View style={styles.dropdownContainer}>
       <TouchableOpacity style={styles.dropDownStyle} onPress={selectOption}>
-        <Text>{!!selectValue ? selectValue.value : "Choose Option"}</Text>
+        <Text>
+          {selectValue.value != "" ? selectValue.value : "Choose Option"}
+        </Text>
         <Image
           source={Images.arrow_drop_down}
           style={{
@@ -35,8 +38,6 @@ export const DropDown = ({ data, selectValue, oneSelect }) => {
 
       {option && (
         <View style={styles.openDropDown}>
-          {/* <Modal visible={option} transparent animationType="none"> */}
-          {/* <View style={styles.openModal}> */}
           {data.map((val, i) => {
             return (
               <TouchableOpacity

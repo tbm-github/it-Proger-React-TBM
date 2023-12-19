@@ -8,11 +8,16 @@ import { Form } from "./Form";
 import { onAdd, onCheckbox, onRemove } from "../store/todoReducer";
 import type { RootState } from "../store";
 
+type Data = {
+  key: string;
+  value: string;
+};
+
 const TaskManager = () => {
   const todos = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
   // Data for Select
-  const data = [
+  const data: Data[] = [
     { key: "all", value: "all" },
     { key: "completed", value: "completed" },
     { key: "notCompleted", value: "not-completed" },

@@ -1,7 +1,17 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import Checkbox from "expo-checkbox";
 
-export const Todo = (props) => {
+type Props = {
+  todo: {
+    title: string;
+    status: string;
+    deleted: boolean;
+    id: string;
+  };
+  onCheckbox: (id: string, isChecked: boolean) => void;
+  onRemove: (id: string) => void;
+};
+export const Todo = (props: Props) => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
