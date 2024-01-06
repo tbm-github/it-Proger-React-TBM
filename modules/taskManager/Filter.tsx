@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { DropDown } from "./DropDown";
+import { Data } from "./types";
 
-type Data = {
-  key: string;
-  value: string;
-};
 type Props = {
   data: Data[];
   onSelect: (text: string) => void;

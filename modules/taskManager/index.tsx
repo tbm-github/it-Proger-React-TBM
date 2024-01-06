@@ -7,11 +7,7 @@ import { Header } from "./Header";
 import { Form } from "./Form";
 import { onAdd, onCheckbox, onRemove } from "../store/todoReducer";
 import type { RootState } from "../store";
-
-type Data = {
-  key: string;
-  value: string;
-};
+import { Data } from "./types";
 
 const TaskManager = () => {
   const todos = useSelector((state: RootState) => state.todos);

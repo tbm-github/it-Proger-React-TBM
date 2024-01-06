@@ -1,11 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Images } from "./Images";
+import { Data } from "./types";
 
-type Data = {
-  key: string;
-  value: string;
-};
 type Props = {
   data: Data[];
   selectValue: Data;
