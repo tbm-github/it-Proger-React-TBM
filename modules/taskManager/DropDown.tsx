@@ -35,7 +35,7 @@ export const DropDown = ({ data, selectValue, oneSelect }: Props) => {
 
       {option && (
         <View style={styles.openDropDown}>
-          {data.map((val, i) => {
+          {data.map((val) => {
             return (
               <TouchableOpacity
                 key={val.key}

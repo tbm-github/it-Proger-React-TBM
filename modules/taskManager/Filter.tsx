@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { DropDown } from "./DropDown";

@@ -1,5 +1,6 @@
+import React from "react";
 import { useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { Filter } from "./Filter";
 import { Todo } from "./Todo";
