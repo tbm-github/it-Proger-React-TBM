@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { Images } from "../modules/taskManager/Images";
+import { Images } from "../modules/taskManager/constants";
 import { FilterOption } from "../modules/taskManager/types";
 
 type Props = {
