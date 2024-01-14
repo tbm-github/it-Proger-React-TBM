@@ -1,4 +1,4 @@
-export type Data = {
+export type FilterOption = {
     key: string;
     value: string;
   };

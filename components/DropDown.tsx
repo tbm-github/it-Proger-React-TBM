@@ -1,12 +1,12 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { Images } from "./Images";
-import { Data } from "./types";
+import { Images } from "../modules/taskManager/Images";
+import { FilterOption } from "../modules/taskManager/types";
 
 type Props = {
-  data: Data[];
-  selectValue: Data;
-  oneSelect: (val: Data) => void;
+  data: FilterOption[];
+  selectValue: FilterOption;
+  oneSelect: (val: FilterOption) => void;
 };
 export const DropDown = ({ data, selectValue, oneSelect }: Props) => {
   const [option, setOption] = React.useState(false);
@@ -15,7 +15,7 @@ export const DropDown = ({ data, selectValue, oneSelect }: Props) => {
     setOption(!option);
   };
 
-  const oneSelectItem = (val: Data) => {
+  const oneSelectItem = (val: FilterOption) => {
     setOption(false);
     oneSelect(val);
   };

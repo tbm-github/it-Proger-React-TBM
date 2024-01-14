@@ -1,18 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { DropDown } from "./DropDown";
-import { Data } from "./types";
+import { DropDown } from "../../components/DropDown";
+import { FilterOption } from "./types";
 
 type Props = {
-  data: Data[];
+  data: FilterOption[];
   onSelect: (text: string) => void;
 };
 
 export const Filter = (props: Props) => {
   const [selectValue, setSelectValue] = useState({ key: "", value: "" });
 
-  const selected = (item: Data) => {
+  const selected = (item: FilterOption) => {
     setSelectValue(item);
     props.onSelect(item.key);
   };

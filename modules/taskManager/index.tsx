@@ -8,12 +8,15 @@ import { Header } from "./Header";
 import { Form } from "./Form";
 import { onAdd, onCheckbox, onRemove } from "../store/todoReducer";
 import type { RootState } from "../store";
-import { Data } from "./types";
+import { FilterOption } from "./types";
+import { useEffect } from "react";
+import { fetchTodos } from "../../api/todo";
+import { error } from "console";
 
 const TaskManager = () => {
   const todos = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
-  const data: Data[] = [
+  const data: FilterOption[] = [
     { key: "all", value: "all" },
     { key: "completed", value: "completed" },
     { key: "notCompleted", value: "not-completed" },
@@ -21,6 +24,15 @@ const TaskManager = () => {
   ];
 
   const [filter, setFilter] = useState("");
+  useEffect(() => {
+    fetchTodos()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error("in catch ");
+      });
+  }, []);
 
   const onSelect = (filter: string) => {
     setFilter(filter);
