@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "tsc": "tsc",
     "lint": "eslint './**/*.{ts,tsx,js,jsx}'",
-    "precommit": "npm run lint && npm test",
+    "precommit": "yarn lint && yarn tsc && yarn test",
     "prepush": "npm run lint"
   },
   "dependencies": {
