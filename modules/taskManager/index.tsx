@@ -6,12 +6,13 @@ import { Filter } from "./Filter";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
-import { onAdd, onCheckbox, onRemove } from "../store/todoReducer";
-import type { RootState } from "../store";
+import { onAdd, onCheckbox, onInit, onRemove } from "../../store/todoReducer";
+import type { RootState } from "../../store";
 import { FilterOption } from "./types";
 import { useEffect } from "react";
 import { fetchTodos } from "../../api/todo";
 import { error } from "console";
+import { TodoType } from "../../types/todo";
 
 const TaskManager = () => {
   const todos = useSelector((state: RootState) => state.todos);
@@ -24,19 +25,18 @@ const TaskManager = () => {
   ];
 
   const [filter, setFilter] = useState("");
+  const onSelect = (filter: string) => {
+    setFilter(filter);
+  };
   useEffect(() => {
     fetchTodos()
-      .then((res) => {
-        console.log(res);
+      .then((todos: TodoType[]) => {
+        dispatch(onInit(todos));
       })
       .catch((error) => {
         console.error("in catch ");
       });
   }, []);
-
-  const onSelect = (filter: string) => {
-    setFilter(filter);
-  };
 
   return (
     <View>

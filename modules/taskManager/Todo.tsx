@@ -1,14 +1,10 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import Checkbox from "expo-checkbox";
+import { TodoType } from "../../types/todo";
 
 type Props = {
-  todo: {
-    title: string;
-    status: string;
-    deleted: boolean;
-    id: string;
-  };
+  todo: TodoType;
   onCheckbox: (id: string, isChecked: boolean) => void;
   onRemove: (id: string) => void;
 };
