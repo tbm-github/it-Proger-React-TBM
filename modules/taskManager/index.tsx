@@ -10,7 +10,7 @@ import { onAdd, onCheckbox, onInit, onRemove } from "../../store/todoReducer";
 import type { RootState } from "../../store";
 import { FilterOption } from "./types";
 import { useEffect } from "react";
-import { fetchTodos } from "../../api/todo";
+import { createTodo, fetchTodos } from "../../api/todo";
 import { error } from "console";
 import { TodoType } from "../../types/todo";
 
@@ -38,6 +38,16 @@ const TaskManager = () => {
       });
   }, []);
 
+  const handleAdd = (text: string) => {
+    dispatch(onAdd(text));
+    createTodo({
+      title: text,
+      status: "notCompleted",
+      deleted: false,
+      id: `${Date.now()}`,
+    });
+  };
+
   return (
     <View>
       <Header />
@@ -60,7 +70,7 @@ const TaskManager = () => {
             />
           ))}
       </ScrollView>
-      <Form onAdd={(text) => dispatch(onAdd(text))} />
+      <Form onAdd={handleAdd} />
     </View>
   );
 };
