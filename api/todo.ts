@@ -28,7 +28,7 @@ export const putTodo = (todo: TodoType) => {
   console.log("todo.id", todo.id);
   const url = "http://localhost:4000/api/tasks/" + todo.id;
   console.log("url ", url);
-  const result = fetch("http://localhost:4000/api/tasks", {
+  const result = fetch(url, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
