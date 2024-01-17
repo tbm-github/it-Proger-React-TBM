@@ -12,13 +12,16 @@ const taskManagerSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    onCheckbox: (state, action: PayloadAction<{ id: string, isChecked: boolean }>) => {
+    onCheckbox: (
+      state,
+      action: PayloadAction<{ id: string; isChecked: boolean }>
+    ) => {
       return state.map((el) => {
         return el.id === action.payload.id
           ? {
-            ...el,
-            status: action.payload.isChecked ? "notCompleted" : "completed",
-          }
+              ...el,
+              status: action.payload.isChecked ? "notCompleted" : "completed",
+            }
           : el;
       });
     },

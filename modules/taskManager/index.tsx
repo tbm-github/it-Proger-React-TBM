@@ -10,9 +10,10 @@ import { onAdd, onCheckbox, onInit, onRemove } from "../../store/todoReducer";
 import type { RootState } from "../../store";
 import { FilterOption } from "./types";
 import { useEffect } from "react";
-import { createTodo, fetchTodos, removeTodo } from "../../api/todo";
+import { createTodo, fetchTodos, putTodo, removeTodo } from "../../api/todo";
 import { error } from "console";
 import { TodoType } from "../../types/todo";
+import { todo } from "node:test";
 
 const TaskManager = () => {
   const todos = useSelector((state: RootState) => state.todos);
@@ -48,10 +49,24 @@ const TaskManager = () => {
     });
   };
 
-  const handleRemove = (text: string) => {
-    console.log("todo.id", text);
-    dispatch(onRemove(text));
-    removeTodo(text);
+  const handleRemove = (id: string) => {
+    console.log("todo.id", id);
+    dispatch(onRemove(id));
+    removeTodo(id);
+  };
+
+  const handleCheckbox = (id: string, isChecked: boolean) => {
+    dispatch(onCheckbox({ id: id, isChecked: isChecked }));
+    todos
+      .filter((todo) => todo.id === id)
+      .map((todo) => {
+        todo = {
+          ...todo,
+          status: isChecked ? "notCompleted" : "completed",
+        };
+        console.log("todoPut ", JSON.stringify(todo));
+        putTodo(todo);
+      });
   };
 
   return (
@@ -69,9 +84,7 @@ const TaskManager = () => {
             <Todo
               key={todo.id}
               todo={todo}
-              onCheckbox={(id: string, isChecked: boolean) =>
-                dispatch(onCheckbox({ id: id, isChecked: isChecked }))
-              }
+              onCheckbox={handleCheckbox}
               onRemove={handleRemove}
             />
           ))}
