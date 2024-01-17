@@ -23,3 +23,18 @@ export const createTodo = (todo: TodoType) => {
     }
   });
 };
+export const removeTodo = (id: string) => {
+  const url = "http://localhost:3000/api/tasks/" + id;
+  console.log("url ", url);
+  const result = fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return result.then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+  });
+};

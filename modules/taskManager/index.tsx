@@ -10,7 +10,7 @@ import { onAdd, onCheckbox, onInit, onRemove } from "../../store/todoReducer";
 import type { RootState } from "../../store";
 import { FilterOption } from "./types";
 import { useEffect } from "react";
-import { createTodo, fetchTodos } from "../../api/todo";
+import { createTodo, fetchTodos, removeTodo } from "../../api/todo";
 import { error } from "console";
 import { TodoType } from "../../types/todo";
 
@@ -48,6 +48,12 @@ const TaskManager = () => {
     });
   };
 
+  const handleRemove = (text: string) => {
+    console.log("todo.id", text);
+    dispatch(onRemove(text));
+    removeTodo(text);
+  };
+
   return (
     <View>
       <Header />
@@ -66,7 +72,7 @@ const TaskManager = () => {
               onCheckbox={(id: string, isChecked: boolean) =>
                 dispatch(onCheckbox({ id: id, isChecked: isChecked }))
               }
-              onRemove={() => dispatch(onRemove(todo.id))}
+              onRemove={handleRemove}
             />
           ))}
       </ScrollView>
