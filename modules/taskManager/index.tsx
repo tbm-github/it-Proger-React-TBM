@@ -40,19 +40,27 @@ const TaskManager = () => {
   }, []);
 
   const handleAdd = (text: string) => {
-    dispatch(onAdd(text));
-    createTodo({
+    const todo = {
       title: text,
       status: "notCompleted",
       deleted: false,
       id: `${Date.now()}`,
-    });
+    };
+    dispatch(onAdd(todo));
+    createTodo(todo);
   };
 
   const handleRemove = (id: string) => {
     console.log("todo.id", id);
     dispatch(onRemove(id));
-    removeTodo(id);
+    todos
+      .filter((todo) => todo.id === id)
+      .map((todo) => {
+        todo = { ...todo, deleted: !todo.deleted };
+        console.log("todoPut ", JSON.stringify(todo));
+        putTodo(todo);
+      });
+    // removeTodo(id);
   };
 
   const handleCheckbox = (id: string, isChecked: boolean) => {

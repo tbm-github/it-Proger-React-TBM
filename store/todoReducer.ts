@@ -1,3 +1,4 @@
+import { todo } from "node:test";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { TodoType } from "../types/todo";
@@ -30,16 +31,8 @@ const taskManagerSlice = createSlice({
         return el.id === action.payload ? { ...el, deleted: !el.deleted } : el;
       });
     },
-    onAdd: (state, action: PayloadAction<string>) => {
-      return [
-        ...state,
-        {
-          title: action.payload,
-          status: "notCompleted",
-          deleted: false,
-          id: Math.random().toString(36).substring(7),
-        },
-      ];
+    onAdd: (state, action: PayloadAction<TodoType>) => {
+      return [...state, action.payload];
     },
     onInit: (state, action: PayloadAction<TodoType[]>) => {
       return action.payload;
