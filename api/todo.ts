@@ -1,7 +1,7 @@
 import { TodoType } from "../types/todo";
 
 export const fetchTodos = () => {
-  const result = fetch("http://localhost:4000/api/tasks");
+  const result = fetch("http://localhost:3000/api/tasks");
   return result.then((res) => {
     if (res.ok) {
       return res.json();
@@ -10,7 +10,7 @@ export const fetchTodos = () => {
 };
 export const createTodo = (todo: TodoType) => {
   console.log("todo ", JSON.stringify(todo));
-  const result = fetch("http://localhost:4000/api/tasks", {
+  const result = fetch("http://localhost:3000/api/tasks", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export const createTodo = (todo: TodoType) => {
 export const putTodo = (todo: TodoType) => {
   console.log("todo ", JSON.stringify(todo));
   console.log("todo.id", todo.id);
-  const url = "http://localhost:4000/api/tasks/" + todo.id;
+  const url = "http://localhost:3000/api/tasks/" + todo.id;
   console.log("url ", url);
   const result = fetch(url, {
     method: "PUT",
@@ -42,7 +42,7 @@ export const putTodo = (todo: TodoType) => {
   });
 };
 export const removeTodo = (id: string) => {
-  const url = "http://localhost:4000/api/tasks/" + id;
+  const url = "http://localhost:3000/api/tasks/" + id;
   console.log("url ", url);
   const result = fetch(url, {
     method: "DELETE",

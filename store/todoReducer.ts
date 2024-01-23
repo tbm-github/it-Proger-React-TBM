@@ -26,9 +26,11 @@ const taskManagerSlice = createSlice({
           : el;
       });
     },
-    onRemove: (todos, action: PayloadAction<string>) => {
+    onRemove: (todos, action: PayloadAction<TodoType>) => {
       return todos.map((el) => {
-        return el.id === action.payload ? { ...el, deleted: !el.deleted } : el;
+        return el.id === action.payload.id
+          ? { ...el, deleted: !el.deleted }
+          : el;
       });
     },
     onAdd: (state, action: PayloadAction<TodoType>) => {

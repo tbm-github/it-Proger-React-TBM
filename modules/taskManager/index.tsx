@@ -50,17 +50,9 @@ const TaskManager = () => {
     createTodo(todo);
   };
 
-  const handleRemove = (id: string) => {
-    console.log("todo.id", id);
-    dispatch(onRemove(id));
-    todos
-      .filter((todo) => todo.id === id)
-      .map((todo) => {
-        todo = { ...todo, deleted: !todo.deleted };
-        console.log("todoPut ", JSON.stringify(todo));
-        putTodo(todo);
-      });
-    // removeTodo(id);
+  const handleRemove = (todo: TodoType) => {
+    dispatch(onRemove(todo));
+    putTodo(todo);
   };
 
   const handleCheckbox = (id: string, isChecked: boolean) => {

@@ -6,7 +6,7 @@ import { TodoType } from "../../types/todo";
 type Props = {
   todo: TodoType;
   onCheckbox: (id: string, isChecked: boolean) => void;
-  onRemove: (id: string) => void;
+  onRemove: (todo: TodoType) => void;
 };
 export const Todo = (props: Props) => {
   const styles = StyleSheet.create({
@@ -41,7 +41,7 @@ export const Todo = (props: Props) => {
       <Text style={styles.text}>{props.todo.title}</Text>
       <Button
         title={props.todo.deleted ? "R" : "X"}
-        onPress={() => props.onRemove(props.todo.id)}
+        onPress={() => props.onRemove(props.todo)}
       />
     </View>
   );
