@@ -5,7 +5,7 @@ import { TodoType } from "../../types/todo";
 
 type Props = {
   todo: TodoType;
-  onCheckbox: (id: string, isChecked: boolean) => void;
+  onCheckbox: (todo: TodoType) => void;
   onRemove: (todo: TodoType) => void;
 };
 export const Todo = (props: Props) => {
@@ -36,12 +36,21 @@ export const Todo = (props: Props) => {
       <Checkbox
         style={styles.checkbox}
         value={isChecked}
-        onValueChange={() => props.onCheckbox(props.todo.id, isChecked)}
+        onValueChange={() => {
+          const todo = {
+            ...props.todo,
+            status: isChecked ? "notCompleted" : "completed",
+          };
+          props.onCheckbox(todo);
+        }}
       />
       <Text style={styles.text}>{props.todo.title}</Text>
       <Button
         title={props.todo.deleted ? "R" : "X"}
-        onPress={() => props.onRemove(props.todo)}
+        onPress={() => {
+          const todo = { ...props.todo, deleted: !props.todo.deleted };
+          props.onRemove(todo);
+        }}
       />
     </View>
   );

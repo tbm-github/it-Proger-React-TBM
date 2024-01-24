@@ -55,18 +55,9 @@ const TaskManager = () => {
     putTodo(todo);
   };
 
-  const handleCheckbox = (id: string, isChecked: boolean) => {
-    dispatch(onCheckbox({ id: id, isChecked: isChecked }));
-    todos
-      .filter((todo) => todo.id === id)
-      .map((todo) => {
-        todo = {
-          ...todo,
-          status: isChecked ? "notCompleted" : "completed",
-        };
-        console.log("todoPut ", JSON.stringify(todo));
-        putTodo(todo);
-      });
+  const handleCheckbox = (todo: TodoType) => {
+    dispatch(onCheckbox(todo));
+    putTodo(todo);
   };
 
   return (

@@ -9,7 +9,6 @@ export const fetchTodos = () => {
   });
 };
 export const createTodo = (todo: TodoType) => {
-  console.log("todo ", JSON.stringify(todo));
   const result = fetch("http://localhost:3000/api/tasks", {
     method: "POST",
     headers: {
@@ -24,10 +23,7 @@ export const createTodo = (todo: TodoType) => {
   });
 };
 export const putTodo = (todo: TodoType) => {
-  console.log("todo ", JSON.stringify(todo));
-  console.log("todo.id", todo.id);
   const url = "http://localhost:3000/api/tasks/" + todo.id;
-  console.log("url ", url);
   const result = fetch(url, {
     method: "PUT",
     headers: {
@@ -43,7 +39,6 @@ export const putTodo = (todo: TodoType) => {
 };
 export const removeTodo = (id: string) => {
   const url = "http://localhost:3000/api/tasks/" + id;
-  console.log("url ", url);
   const result = fetch(url, {
     method: "DELETE",
     headers: {
