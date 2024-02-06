@@ -1,25 +1,16 @@
 import { TodoType } from "../types/todo";
+import { request } from "./request";
 
 export const fetchTodos = () => {
-  const result = fetch("http://localhost:3000/api/tasks");
-  return result.then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-  });
+  return request("http://localhost:3000/api/tasks");
 };
 export const createTodo = (todo: TodoType) => {
-  const result = fetch("http://localhost:3000/api/tasks", {
+  return request("http://localhost:3000/api/tasks", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(todo),
-  });
-  return result.then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
   });
 };
 export const putTodo = (todo: TodoType) => {

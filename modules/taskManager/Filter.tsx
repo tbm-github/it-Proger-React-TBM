@@ -23,7 +23,7 @@ export const Filter = (props: Props) => {
         selectValue={selectValue}
         data={props.data}
         oneSelect={selected}
-      ></DropDown>
+      />
     </View>
   );
 };

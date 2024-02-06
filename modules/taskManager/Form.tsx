@@ -17,7 +17,7 @@ export const Form = (props: Props) => {
         style={styles.input}
         onChangeText={onChange}
         placeholder="New Task"
-      ></TextInput>
+      />
       <Button title="Add" onPress={() => props.onAdd(text)} />
     </View>
   );

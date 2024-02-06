@@ -8,7 +8,8 @@ type Props = {
   onCheckbox: (todo: TodoType) => void;
   onRemove: (todo: TodoType) => void;
 };
-export const Todo = (props: Props) => {
+
+export const Todo = ({ todo, onCheckbox, onRemove }: Props) => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
@@ -26,19 +27,18 @@ export const Todo = (props: Props) => {
       fontSize: 18,
       color: "black",
       textAlign: "left",
-      textDecorationLine: props.todo.deleted ? "line-through" : "none",
+      textDecorationLine: todo.deleted ? "line-through" : "none",
     },
   });
 
   const onValueChange = () => {
-    const todo = {
-      ...props.todo,
+    onCheckbox({
+      ...todo,
       status: isChecked ? "notCompleted" : "completed",
-    };
-    props.onCheckbox(todo);
+    });
   };
 
-  const isChecked = props.todo.status === "completed";
+  const isChecked = todo.status === "completed";
   return (
     <View style={styles.container}>
       <Checkbox
@@ -46,13 +46,10 @@ export const Todo = (props: Props) => {
         value={isChecked}
         onValueChange={onValueChange}
       />
-      <Text style={styles.text}>{props.todo.title}</Text>
+      <Text style={styles.text}>{todo.title}</Text>
       <Button
-        title={props.todo.deleted ? "R" : "X"}
-        onPress={() => {
-          const todo = { ...props.todo, deleted: !props.todo.deleted };
-          props.onRemove(todo);
-        }}
+        title={todo.deleted ? "R" : "X"}
+        onPress={() => onRemove({ ...todo, deleted: !todo.deleted })}
       />
     </View>
   );
