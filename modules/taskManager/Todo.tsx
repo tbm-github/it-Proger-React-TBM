@@ -30,19 +30,21 @@ export const Todo = (props: Props) => {
     },
   });
 
+  const onValueChange = () => {
+    const todo = {
+      ...props.todo,
+      status: isChecked ? "notCompleted" : "completed",
+    };
+    props.onCheckbox(todo);
+  };
+
   const isChecked = props.todo.status === "completed";
   return (
     <View style={styles.container}>
       <Checkbox
         style={styles.checkbox}
         value={isChecked}
-        onValueChange={() => {
-          const todo = {
-            ...props.todo,
-            status: isChecked ? "notCompleted" : "completed",
-          };
-          props.onCheckbox(todo);
-        }}
+        onValueChange={onValueChange}
       />
       <Text style={styles.text}>{props.todo.title}</Text>
       <Button

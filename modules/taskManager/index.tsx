@@ -29,6 +29,7 @@ const TaskManager = () => {
   const onSelect = (filter: string) => {
     setFilter(filter);
   };
+
   useEffect(() => {
     fetchTodos()
       .then((todos: TodoType[]) => {
