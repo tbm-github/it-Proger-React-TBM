@@ -38,6 +38,10 @@ export const Todo = ({ todo, onCheckbox, onRemove }: Props) => {
     });
   };
 
+  const onPress = () => {
+    onRemove({ ...todo, deleted: !todo.deleted });
+  };
+
   const isChecked = todo.status === "completed";
   return (
     <View style={styles.container}>
@@ -47,10 +51,7 @@ export const Todo = ({ todo, onCheckbox, onRemove }: Props) => {
         onValueChange={onValueChange}
       />
       <Text style={styles.text}>{todo.title}</Text>
-      <Button
-        title={todo.deleted ? "R" : "X"}
-        onPress={() => onRemove({ ...todo, deleted: !todo.deleted })}
-      />
+      <Button title={todo.deleted ? "R" : "X"} onPress={onPress} />
     </View>
   );
 };
