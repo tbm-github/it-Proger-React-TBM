@@ -6,7 +6,7 @@ import { Filter } from "./Filter";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
-import { onAdd, onCheckbox, onInit, onRemove } from "../../store/todoReducer";
+import { onAdd, onCheckbox, onInit, onRemove } from "./todoReducer";
 import type { RootState } from "../../store";
 import { FilterOption } from "./types";
 import { useEffect } from "react";

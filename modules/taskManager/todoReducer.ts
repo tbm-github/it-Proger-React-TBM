@@ -1,7 +1,7 @@
 import { todo } from "node:test";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { TodoType } from "../types/todo";
+import { TodoType } from "../../types/todo";
 
 const initialState: TodoType[] = [
   { title: "Task 1", status: "notCompleted", deleted: false, id: "0" },

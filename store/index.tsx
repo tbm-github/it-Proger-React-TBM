@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todosReducer from "./todoReducer";
-import counterReducer from "./counterReducer";
+import todosReducer from "../modules/taskManager/todoReducer";
+import counterReducer from "../modules/counter/counterReducer";
 
 export const store = configureStore({
   reducer: {
@@ -9,7 +9,5 @@ export const store = configureStore({
   },
 });
 
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

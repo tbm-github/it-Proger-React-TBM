@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../../store/counterReducer";
+import { decrement, increment } from "./counterReducer";
 import { RootState } from "../../store";
 
 export default function Counter() {
