@@ -48,17 +48,17 @@ const TaskManager = () => {
       id: `${Date.now()}`,
     };
     dispatch(onAdd(todo));
-    createTodo(todo);
+    // createTodo(todo);
   };
 
   const handleRemove = (todo: TodoType) => {
     dispatch(onRemove(todo));
-    putTodo(todo);
+    // putTodo(todo);
   };
 
   const handleCheckbox = (todo: TodoType) => {
     dispatch(onCheckbox(todo));
-    putTodo(todo);
+    // putTodo(todo);
   };
 
   return (

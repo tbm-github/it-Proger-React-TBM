@@ -1,5 +1,6 @@
 import { put, takeLatest, delay } from "redux-saga/effects";
 import { onInit, onCheckbox, onAdd, onRemove } from "./todoReducer";
+import { createTodo, putTodo } from "../../api/todo";
 // import {onCheckbox, onAdd, onRemove, onInit }
 
 function* initialization({ payload }: ReturnType<typeof onInit>) {
@@ -15,20 +16,20 @@ function* initialization({ payload }: ReturnType<typeof onInit>) {
 function* choosing({ payload }: ReturnType<typeof onCheckbox>) {
   try {
     yield delay(2000);
-    console.log("choosing in Saga");
-    // yield put(actions.initializationSuccess(payload));
+    console.log("choosing Checkbox in Saga");
+    yield putTodo(payload);
+    // yield put(actions.choosingSuccess(payload));
   } catch (e) {
-    // yield put(actions.initializationFailed());
+    // yield put(actions.choosingFailed());
   }
 }
 
 function* adding({ payload }: ReturnType<typeof onAdd>) {
   try {
-    yield delay(2000);
-    console.log("adding in Saga");
-    // yield put(actions.initializationSuccess(payload));
+    yield createTodo(payload);
+    // yield put(actions.addingSuccess(payload));
   } catch (e) {
-    // yield put(actions.initializationFailed());
+    // yield put(actions.addingFailed());
   }
 }
 
@@ -36,9 +37,10 @@ function* removing({ payload }: ReturnType<typeof onRemove>) {
   try {
     yield delay(2000);
     console.log("removing in Saga");
-    // yield put(actions.initializationSuccess(payload));
+    putTodo(payload);
+    // yield put(actions.removingSuccess(payload));
   } catch (e) {
-    // yield put(actions.initializationFailed());
+    // yield put(actions.removingFailed());
   }
 }
 

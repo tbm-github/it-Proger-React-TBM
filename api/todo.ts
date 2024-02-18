@@ -4,6 +4,7 @@ import { request } from "./request";
 export const fetchTodos = () => {
   return request("http://localhost:3000/api/tasks");
 };
+
 export const createTodo = (todo: TodoType) => {
   return request("http://localhost:3000/api/tasks", {
     method: "POST",
