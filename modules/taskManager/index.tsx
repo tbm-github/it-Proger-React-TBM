@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { Filter } from "./Filter";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
-import { onAdd, onCheckbox, onInit, onRemove } from "./todoReducer";
+import { onAddInit, onCheckbox, onInit, onRemove } from "./todoReducer";
 import type { RootState } from "../../store";
 import { FilterOption } from "./types";
 import { useEffect } from "react";
@@ -16,7 +16,9 @@ import { TodoType } from "../../types/todo";
 import { todo } from "node:test";
 
 const TaskManager = () => {
-  const todos = useSelector((state: RootState) => state.todos);
+  const { todos, loading, error } = useSelector(
+    (state: RootState) => state.todos
+  );
   const dispatch = useDispatch();
   const data: FilterOption[] = [
     { key: "all", value: "all" },
@@ -47,7 +49,7 @@ const TaskManager = () => {
       deleted: false,
       id: `${Date.now()}`,
     };
-    dispatch(onAdd(todo));
+    dispatch(onAddInit(todo));
     // createTodo(todo);
   };
 
@@ -63,6 +65,7 @@ const TaskManager = () => {
 
   return (
     <View>
+      {loading && <Text>loading ...</Text>}
       <Header />
       <Filter data={data} onSelect={onSelect} />
       <ScrollView style={{ height: "50%" }}>

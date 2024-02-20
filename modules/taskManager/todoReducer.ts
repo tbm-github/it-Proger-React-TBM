@@ -2,36 +2,61 @@ import { todo } from "node:test";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { TodoType } from "../../types/todo";
+type TaskManagerType = { todos: TodoType[]; loading: boolean; error?: string };
 
-const initialState: TodoType[] = [
-  { title: "Task 1", status: "notCompleted", deleted: false, id: "0" },
-  { title: "Task 2", status: "notCompleted", deleted: false, id: "1" },
-  { title: "Task 3", status: "notCompleted", deleted: false, id: "2" },
-];
+const initialState: TaskManagerType = {
+  todos: [
+    { title: "Task 1", status: "notCompleted", deleted: false, id: "0" },
+    { title: "Task 2", status: "notCompleted", deleted: false, id: "1" },
+    { title: "Task 3", status: "notCompleted", deleted: false, id: "2" },
+  ],
+  loading: false,
+  error: undefined,
+};
 
 const taskManagerSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    onCheckbox: (todos, action: PayloadAction<TodoType>) => {
-      return todos.map((el) => {
-        return el.id === action.payload.id ? action.payload : el;
-      });
+    onCheckbox: (state, action: PayloadAction<TodoType>) => {
+      return {
+        ...state,
+        todos: state.todos.map((el) => {
+          return el.id === action.payload.id ? action.payload : el;
+        }),
+      };
     },
-    onRemove: (todos, action: PayloadAction<TodoType>) => {
-      return todos.map((el) => {
-        return el.id === action.payload.id ? action.payload : el;
-      });
+    onRemove: (state, action: PayloadAction<TodoType>) => {
+      return {
+        ...state,
+        todos: state.todos.map((el) => {
+          return el.id === action.payload.id ? action.payload : el;
+        }),
+      };
     },
-    onAdd: (state, action: PayloadAction<TodoType>) => {
-      return [...state, action.payload];
+    onAddInit: (state, action: PayloadAction<TodoType>) => {
+      return { ...state, loading: true };
     },
+    onAddSucceed: (state, action: PayloadAction<TodoType>) => {
+      return { todos: [...state.todos, action.payload], loading: false };
+    },
+    onAddFailure: (state, action: PayloadAction<string>) => {
+      return { ...state, error: action.payload, loading: false };
+    },
+
     onInit: (state, action: PayloadAction<TodoType[]>) => {
-      return action.payload;
+      return { ...state, todos: action.payload, loading: false };
     },
   },
 });
 
-export const { onCheckbox, onAdd, onRemove, onInit } = taskManagerSlice.actions;
+export const {
+  onCheckbox,
+  onAddInit,
+  onAddSucceed,
+  onAddFailure,
+  onRemove,
+  onInit,
+} = taskManagerSlice.actions;
 
 export default taskManagerSlice.reducer;
