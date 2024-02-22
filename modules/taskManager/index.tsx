@@ -6,7 +6,7 @@ import { Filter } from "./Filter";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
-import { onAddInit, onCheckbox, onInit, onRemove } from "./todoReducer";
+import { onAddInit, onChooseInit, onInit, onRemove } from "./todoReducer";
 import type { RootState } from "../../store";
 import { FilterOption } from "./types";
 import { useEffect } from "react";
@@ -59,7 +59,7 @@ const TaskManager = () => {
   };
 
   const handleCheckbox = (todo: TodoType) => {
-    dispatch(onCheckbox(todo));
+    dispatch(onChooseInit(todo));
     // putTodo(todo);
   };
 

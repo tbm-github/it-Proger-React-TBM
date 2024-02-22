@@ -18,14 +18,23 @@ const taskManagerSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    onCheckbox: (state, action: PayloadAction<TodoType>) => {
+    onChooseInit: (state, action: PayloadAction<TodoType>) => {
       return {
-        ...state,
-        todos: state.todos.map((el) => {
-          return el.id === action.payload.id ? action.payload : el;
-        }),
+        todos: [
+          ...state.todos.map((el) => {
+            return el.id === action.payload.id ? action.payload : el;
+          }),
+        ],
+        loading: true,
       };
     },
+    onChooseSucceed: (state, action: PayloadAction<TodoType>) => {
+      return { ...state, loading: false };
+    },
+    onChooseFailure: (state, action: PayloadAction<string>) => {
+      return { ...state, error: action.payload, loading: false };
+    },
+
     onRemove: (state, action: PayloadAction<TodoType>) => {
       return {
         ...state,
@@ -51,7 +60,9 @@ const taskManagerSlice = createSlice({
 });
 
 export const {
-  onCheckbox,
+  onChooseInit,
+  onChooseSucceed,
+  onChooseFailure,
   onAddInit,
   onAddSucceed,
   onAddFailure,
