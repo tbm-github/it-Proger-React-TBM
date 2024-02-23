@@ -1,5 +1,5 @@
 import { put, takeLatest, delay } from "redux-saga/effects";
-import { onInit, onChooseInit, onRemove, onAddInit } from "./todoReducer";
+import { onInit, onChooseInit, onRemoveInit, onAddInit } from "./todoReducer";
 import * as actions from "./todoReducer";
 import * as api from "../../api/todo";
 import { error } from "node:console";
@@ -36,13 +36,13 @@ function* add({ payload }: ReturnType<typeof onAddInit>) {
   }
 }
 
-function* remove({ payload }: ReturnType<typeof onRemove>) {
+function* remove({ payload }: ReturnType<typeof onRemoveInit>) {
   try {
     console.log("removing in Saga");
     yield api.putTodo(payload);
-    // yield put(actions.removingSuccess(payload));
+    yield put(actions.onRemoveSucceed(payload));
   } catch (e) {
-    // yield put(actions.removingFailed());
+    yield put(actions.onRemoveFailure(e as string));
   }
 }
 
@@ -50,5 +50,5 @@ export default function* taskManagerSaga() {
   yield takeLatest(onInit, initialize);
   yield takeLatest(onChooseInit, choose);
   yield takeLatest(onAddInit, add);
-  yield takeLatest(onRemove, remove);
+  yield takeLatest(onRemoveInit, remove);
 }

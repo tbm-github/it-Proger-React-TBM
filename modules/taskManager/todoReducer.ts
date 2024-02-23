@@ -35,14 +35,23 @@ const taskManagerSlice = createSlice({
       return { ...state, error: action.payload, loading: false };
     },
 
-    onRemove: (state, action: PayloadAction<TodoType>) => {
+    onRemoveInit: (state, action: PayloadAction<TodoType>) => {
       return {
-        ...state,
-        todos: state.todos.map((el) => {
-          return el.id === action.payload.id ? action.payload : el;
-        }),
+        todos: [
+          ...state.todos.map((el) => {
+            return el.id === action.payload.id ? action.payload : el;
+          }),
+        ],
+        loading: true,
       };
     },
+    onRemoveSucceed: (state, action: PayloadAction<TodoType>) => {
+      return { ...state, loading: false };
+    },
+    onRemoveFailure: (state, action: PayloadAction<string>) => {
+      return { ...state, error: action.payload, loading: false };
+    },
+
     onAddInit: (state, action: PayloadAction<TodoType>) => {
       return { ...state, loading: true };
     },
@@ -50,6 +59,7 @@ const taskManagerSlice = createSlice({
       return { todos: [...state.todos, action.payload], loading: false };
     },
     onAddFailure: (state, action: PayloadAction<string>) => {
+      console.log(`error:${action.payload}`);
       return { ...state, error: action.payload, loading: false };
     },
 
@@ -66,7 +76,9 @@ export const {
   onAddInit,
   onAddSucceed,
   onAddFailure,
-  onRemove,
+  onRemoveInit,
+  onRemoveSucceed,
+  onRemoveFailure,
   onInit,
 } = taskManagerSlice.actions;
 

@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, View, Text, ActivityIndicator } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { Filter } from "./Filter";
 import { Todo } from "./Todo";
 import { Header } from "./Header";
 import { Form } from "./Form";
-import { onAddInit, onChooseInit, onInit, onRemove } from "./todoReducer";
+import { onAddInit, onChooseInit, onInit, onRemoveInit } from "./todoReducer";
 import type { RootState } from "../../store";
 import { FilterOption } from "./types";
 import { useEffect } from "react";
@@ -54,7 +54,7 @@ const TaskManager = () => {
   };
 
   const handleRemove = (todo: TodoType) => {
-    dispatch(onRemove(todo));
+    dispatch(onRemoveInit(todo));
     // putTodo(todo);
   };
 
@@ -65,7 +65,7 @@ const TaskManager = () => {
 
   return (
     <View>
-      {loading && <Text>loading ...</Text>}
+      {loading && <ActivityIndicator size="large" color="#00ff00" />}
       <Header />
       <Filter data={data} onSelect={onSelect} />
       <ScrollView style={{ height: "50%" }}>
