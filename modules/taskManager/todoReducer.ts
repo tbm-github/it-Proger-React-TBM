@@ -2,6 +2,7 @@ import { todo } from "node:test";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { TodoType } from "../../types/todo";
+import { Alert } from "react-native";
 type TaskManagerType = { todos: TodoType[]; loading: boolean; error?: string };
 
 const initialState: TaskManagerType = {
@@ -59,7 +60,13 @@ const taskManagerSlice = createSlice({
       return { todos: [...state.todos, action.payload], loading: false };
     },
     onAddFailure: (state, action: PayloadAction<string>) => {
-      console.log(`error:${action.payload}`);
+      Alert.alert("Alert", `There is such a todo!`, [
+        {
+          text: "OK",
+          onPress: () => console.log(action.payload),
+        },
+      ]);
+
       return { ...state, error: action.payload, loading: false };
     },
 
