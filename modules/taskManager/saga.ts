@@ -3,6 +3,7 @@ import { onInit, onChooseInit, onRemoveInit, onAddInit } from "./todoReducer";
 import * as actions from "./todoReducer";
 import * as api from "../../api/todo";
 import { error } from "node:console";
+import { Alert } from "react-native";
 // import {onCheckbox, onAdd, onRemove, onInit }
 
 function* initialize({ payload }: ReturnType<typeof onInit>) {
@@ -32,6 +33,12 @@ function* add({ payload }: ReturnType<typeof onAddInit>) {
     yield put(actions.onAddSucceed(payload));
   } catch (e) {
     console.log(e);
+    Alert.alert("Alert", `There is such ${e}!`, [
+      {
+        text: "OK",
+        onPress: () => console.log(e),
+      },
+    ]);
     yield put(actions.onAddFailure(e as string));
   }
 }

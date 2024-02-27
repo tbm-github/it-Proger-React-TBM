@@ -65,7 +65,6 @@ const TaskManager = () => {
 
   return (
     <View>
-      {loading && <ActivityIndicator size="large" color="#00ff00" />}
       <Header />
       <Filter data={data} onSelect={onSelect} />
       <ScrollView style={{ height: "50%" }}>
@@ -84,7 +83,8 @@ const TaskManager = () => {
             />
           ))}
       </ScrollView>
-      <Form onAdd={handleAdd} />
+      {loading && <ActivityIndicator size="large" color="#00ff00" />}
+      {!loading && <Form onAdd={handleAdd} />}
     </View>
   );
 };

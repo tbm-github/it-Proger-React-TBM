@@ -60,13 +60,6 @@ const taskManagerSlice = createSlice({
       return { todos: [...state.todos, action.payload], loading: false };
     },
     onAddFailure: (state, action: PayloadAction<string>) => {
-      Alert.alert("Alert", `There is such a todo!`, [
-        {
-          text: "OK",
-          onPress: () => console.log(action.payload),
-        },
-      ]);
-
       return { ...state, error: action.payload, loading: false };
     },
 
