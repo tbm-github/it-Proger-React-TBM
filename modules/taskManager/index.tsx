@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { ScrollView, View, Text, ActivityIndicator } from "react-native";
+import { ScrollView, View, Text, ActivityIndicator, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { Filter } from "./Filter";
 import { Todo } from "./Todo";
@@ -41,6 +41,16 @@ const TaskManager = () => {
         console.error("in catch ");
       });
   }, []);
+
+  useEffect(() => {
+    if (!error) return;
+    Alert.alert("Alert", `There is such ${error}!`, [
+      {
+        text: "OK",
+        onPress: () => console.log(error),
+      },
+    ]);
+  }, [error]);
 
   const handleAdd = (text: string) => {
     const todo = {

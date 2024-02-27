@@ -33,12 +33,6 @@ function* add({ payload }: ReturnType<typeof onAddInit>) {
     yield put(actions.onAddSucceed(payload));
   } catch (e) {
     console.log(e);
-    Alert.alert("Alert", `There is such ${e}!`, [
-      {
-        text: "OK",
-        onPress: () => console.log(e),
-      },
-    ]);
     yield put(actions.onAddFailure(e as string));
   }
 }
