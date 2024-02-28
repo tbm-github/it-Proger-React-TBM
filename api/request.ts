@@ -1,5 +1,7 @@
+const baseURL = "http://192.168.1.100:3000/api";
+
 export const request = (url: string, options?: RequestInit | undefined) => {
-  return fetch(url, options).then((res) => {
+  return fetch(baseURL + url, options).then((res) => {
     console.log(`Status response ${res.status}`);
 
     if (res.ok) {

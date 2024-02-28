@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 20,
+    padding: 10,
     width: "80%",
     marginLeft: "10%",
     borderWidth: 1,
@@ -44,10 +44,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "black",
     textAlign: "left",
+
     width: "80%",
     borderWidth: 1,
   },
   btn: {
+    alignItems: "center",
     fontSize: 18,
     color: "black",
     borderRadius: 3,

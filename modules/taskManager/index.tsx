@@ -37,8 +37,8 @@ const TaskManager = () => {
       .then((todos: TodoType[]) => {
         dispatch(onInit(todos));
       })
-      .catch((error) => {
-        console.error("in catch ");
+      .catch((error: any) => {
+        console.error("in catch ", error);
       });
   }, []);
 
@@ -76,6 +76,8 @@ const TaskManager = () => {
   return (
     <View>
       <Header />
+      {loading && <ActivityIndicator size="large" color="#00ff00" />}
+      {!loading && <Form onAdd={handleAdd} />}
       <Filter data={data} onSelect={onSelect} />
       <ScrollView style={{ height: "50%" }}>
         {todos
@@ -93,8 +95,6 @@ const TaskManager = () => {
             />
           ))}
       </ScrollView>
-      {loading && <ActivityIndicator size="large" color="#00ff00" />}
-      {!loading && <Form onAdd={handleAdd} />}
     </View>
   );
 };
